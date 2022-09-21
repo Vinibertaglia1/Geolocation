@@ -57,7 +57,7 @@ class GeoEstimation():
     #df_merged[f'{self.app}_taxa'] = df_merged[self.app] / df_merged[self.app].sum()
     #df_merged['geo_downloads_estimation'] = abs(round(df_merged[f'{self.app}_taxa'] * GeoEstimation(self.app, self.country, self.start_date, self.final_date).search_appid()['var_downloads'],0))
     df_merged['geometry'] = df_merged['geometry'].astype('str').apply(wkt.loads)
-    gdf = gpd.GeoDataFrame(df_merged, crs='epsg:4326')
+    gdf = gpd.GeoDataFrame(df_merged, crs='EPSG:4326')
     dicionario.update({f'{self.app}_{self.country}_with_geometry' : gdf})
     #gdf.to_csv(f'excel_results/{self.country}/{self.app}_{self.country}_with_geometry.csv')
     return gdf
