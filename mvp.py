@@ -6,7 +6,7 @@ from unidecode import unidecode
 import googletrends as googletrends
 from shapely import wkt
 import warnings
-from shapely.errors import ShapelyDeprecationWarning
+#from shapely.errors import ShapelyDeprecationWarning
 #from etl_functions import find_mongo
 from datetime import datetime
 #from pymongo import MongoClient
