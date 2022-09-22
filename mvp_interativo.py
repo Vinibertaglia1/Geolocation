@@ -11,8 +11,8 @@ from shapely.geometry import Point
 
 st.title('MVP - Interactive GeoLocation')
 
-
-df_relogio = pd.read_csv('dooh_planner_rio.csv')
+st.file_uploader('Dado de relogios em csv')
+df_relogio = pd.read_csv(arquivo_input)
 df_relogio['geometry'] = [Point(xy) for xy in zip(df_relogio['lng'], df_relogio['lat'])]
 df_relogio = geopandas.GeoDataFrame(df_relogio)
 
