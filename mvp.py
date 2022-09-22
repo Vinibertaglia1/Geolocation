@@ -263,7 +263,7 @@ def social_dataframe(lista_apps, country, estado, start_date, final_date, dicion
     dado = dado_agr.merge(dado_ibge, how='left', on='name_muni')
     #dado.to_csv('agregado.csv')
     dado['geometry'] = dado['geometry'].astype('str').apply(wkt.loads) #Transformando a coluna geometry no tipo geometry
-    dado = gpd.GeoDataFrame(dado, crs='epsg:4326') #Transformando o dataframe num geodataframe
+    dado = gpd.GeoDataFrame(dado) #Transformando o dataframe num geodataframe
     dado_filtrado = dado.groupby('name_muni').max().reset_index().iloc[:,:][lista_apps] #Criando um dataframe só com os apps como coluna
     dados_economicos = dado.groupby('name_muni').max().reset_index().iloc[:, -4:]
     dado_filtrado['app'] = dado_filtrado.idxmax(axis=1) #Pegando os nomes de coluna com maior valor e colocando numa nova coluna
