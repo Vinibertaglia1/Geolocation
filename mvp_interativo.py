@@ -33,6 +33,7 @@ df_localidade = dataframe[dataframe[tipo].isin(lista_opcoes_selecionadas)]
 
 
 df_relogio = pd.DataFrame(arquivo_input)
+st.write(df_relogio.columns)
 df_relogio['geometry'] = [Point(xy) for xy in zip(df_relogio['lng'], df_relogio['lat'])]
 df_relogio = geopandas.GeoDataFrame(df_relogio)
 
