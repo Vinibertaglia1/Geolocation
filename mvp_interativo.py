@@ -38,8 +38,8 @@ df_relogio = geopandas.GeoDataFrame(df_relogio)
 dist_dict = {}
 for i, v in df.iterrows():
   dist_list = []
-  for farmacia in range(len(farmacia_filtro)):
-    dist = np.linalg.norm(np.array([df['geometry'][i].x, df['geometry'][i].y]) - np.array([farmacia_filtro['geometry'][farmacia].x, farmacia_filtro['geometry'][farmacia].y]))
+  for j in range(len(df_localidade)):
+    dist = np.linalg.norm(np.array([df['geometry'][i].x, df['geometry'][i].y]) - np.array([df_localidade['geometry'][j].x, farmacia_filtro['geometry'][j].y]))
     #dist = distance.euclidean([df['geometry'][0].x, df['geometry'][0].y] , [farmacia_filtro['geometry'][i].x, farmacia_filtro['geometry'][i].y])
     dist_list.append(dist)
   dist_dict.update({v['ownerScreenId']: np.median(dist_list)})
