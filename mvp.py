@@ -137,7 +137,7 @@ class GeoEstimation():
         #dado_estado = geobr.read_municipality(code_muni=self.estado, year=2020)
         dado_estim= GeoEstimation(self.app, self.country, self.start_date, self.final_date).get_municip(self.estado, dicionario)
         #dado_estim = geoestimation_get_municip
-        dado = gpd.GeoDataFrame(dado_estim, crs='epsg:4326')
+        dado = gpd.GeoDataFrame(dado_estim)
         #dado = dado_estado.merge(dado_estim, how='left', on='name_muni').fillna(0)
         
         plt.rcParams.update({"font.size": 10})
