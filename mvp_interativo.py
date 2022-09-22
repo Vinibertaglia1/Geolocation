@@ -11,7 +11,7 @@ from shapely.geometry import Point
 
 st.title('MVP - Interactive GeoLocation')
 
-st.file_uploader('Dado de relogios em csv')
+arquivo_input = st.file_uploader('Dado de relogios em csv')
 
 osmnx = osmnx()
 
