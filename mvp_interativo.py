@@ -3,15 +3,19 @@ from osmnx_functions import osmnx
 from streamlit_folium import st_folium
 import folium
 import geopandas
-
-
-
+from shapely.geometry import Point
 
 #get_gdf, opcoes_unicas, interactive_map_by_amenity, interactive_map_by_name
 
 
 
 st.title('MVP - Interactive GeoLocation')
+
+
+df_relogio = pd.read_csv('dooh_planner_rio.csv')
+df_relogio['geometry'] = [Point(xy) for xy in zip(df_relogio['lng'], df_relogio['lat'])]
+df_relogio = geopandas.GeoDataFrame(df_relogio)
+
 
 osmnx = osmnx()
 
@@ -28,13 +32,25 @@ lista_opcoes = osmnx.opcoes_unicas(tipo)
 lista_opcoes_selecionadas = st.multiselect('Selecione seu filtro', lista_opcoes)
 
 
+df_localidade = dataframe[dataframe[tipo].isin(lista_opcoes_selecionadas)]
 
+dist_dict = {}
+for i, v in df.iterrows():
+  dist_list = []
+  for farmacia in range(len(farmacia_filtro)):
+    dist = np.linalg.norm(np.array([df['geometry'][i].x, df['geometry'][i].y]) - np.array([farmacia_filtro['geometry'][farmacia].x, farmacia_filtro['geometry'][farmacia].y]))
+    #dist = distance.euclidean([df['geometry'][0].x, df['geometry'][0].y] , [farmacia_filtro['geometry'][i].x, farmacia_filtro['geometry'][i].y])
+    dist_list.append(dist)
+  dist_dict.update({v['ownerScreenId']: np.median(dist_list)})
+
+
+dado_distancia = pd.DataFrame(dist_dict, index=['distancia_media']).T
 
 
 if len(lista_opcoes_selecionadas) <= 3:
     gdf = dataframe
-    colors = ['red','blues','green']
-    m = gdf[gdf[tipo].isin(lista_opcoes_selecionadas)].explore(tooltip=['amenity','name','addr:city','addr:suburb','addr:street'])
+    colors = ['red','blue','green']
+    m = df_localidade.explore(tooltip=['amenity','name','addr:city','addr:suburb','addr:street'])
 
 
     for i,v in enumerate(lista_opcoes_selecionadas):
@@ -47,7 +63,24 @@ if len(lista_opcoes_selecionadas) <= 3:
             name="cities" # name of the layer in the map
         )
 
+    df_relogio.merge(dado_distancia.reset_index(), left_on=['ownerScreenId'], right_on='index').drop(columns='index').explore(
+         m=m, # pass the map object
+         color="blue", # use red color on all points
+         marker_kwds=dict(radius=5, fill=True), # make marker radius 10px with fill
+         tooltip=['address','ownerScreenId','distancia_media'], # show "name" column in the tooltip
+         tooltip_kwds=dict(labels=True), # do not show column label in the tooltip
+         name="cities" # name of the layer in the map
+     )
 
+    df_relogio.merge(dado_distancia.reset_index(), left_on=['ownerScreenId'], right_on='index').drop(columns='index').sort_values('distancia_media', ascending=True)[:10].explore(
+         m=m, # pass the map object
+         color="green", # use red color on all points
+         marker_kwds=dict(radius=5, fill=True), # make marker radius 10px with fill
+         tooltip=['address','ownerScreenId','distancia_media'], # show "name" column in the tooltip
+         tooltip_kwds=dict(labels=True), # do not show column label in the tooltip
+         name="cities" # name of the layer in the map
+    )
+    
     folium.TileLayer('Stamen Toner', control=True).add_to(m)  # use folium to add alternative tiles
     folium.LayerControl().add_to(m)  # use folium to add layer control
 
