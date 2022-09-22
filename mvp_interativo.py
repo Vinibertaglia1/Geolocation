@@ -2,6 +2,7 @@ import streamlit as st
 from osmnx_functions import osmnx
 from streamlit_folium import st_folium
 import folium
+import pandas as pd
 import geopandas
 from shapely.geometry import Point
 
@@ -31,7 +32,7 @@ lista_opcoes_selecionadas = st.multiselect('Selecione seu filtro', lista_opcoes)
 df_localidade = dataframe[dataframe[tipo].isin(lista_opcoes_selecionadas)]
 
 
-df_relogio = pd.DataFrame(arquivo_input)
+df_relogio = pd.read_csv(arquivo_input)
 df_relogio['geometry'] = [Point(xy) for xy in zip(df_relogio['lng'], df_relogio['lat'])]
 df_relogio = geopandas.GeoDataFrame(df_relogio)
 
