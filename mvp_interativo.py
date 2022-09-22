@@ -40,6 +40,8 @@ df_relogio = pd.read_csv('dooh_planner_rio.csv')
 st.write(df_relogio)
 df_relogio['geometry'] = [Point(xy) for xy in zip(df_relogio['lng'], df_relogio['lat'])]
 df_relogio = geopandas.GeoDataFrame(df_relogio)
+df_relogio = df_relogio.to_crs(crs=4326)
+
 
 dist_dict = {}
 for i, v in df_relogio.iterrows():
