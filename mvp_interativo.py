@@ -35,7 +35,7 @@ df_localidade = dataframe[dataframe[tipo].isin(lista_opcoes_selecionadas)]
 
 
 df_relogio = pd.read_csv('dooh_planner_rio.csv')
-st.write(df_relogio.columns)
+st.write(df_relogio)
 df_relogio['geometry'] = [Point(xy) for xy in zip(df_relogio['lng'], df_relogio['lat'])]
 df_relogio = geopandas.GeoDataFrame(df_relogio)
 
