@@ -37,10 +37,10 @@ df_relogio['geometry'] = [Point(xy) for xy in zip(df_relogio['lng'], df_relogio[
 df_relogio = geopandas.GeoDataFrame(df_relogio)
 
 dist_dict = {}
-for i, v in df.iterrows():
+for i, v in df_relogio.iterrows():
   dist_list = []
   for j in range(len(df_localidade)):
-    dist = np.linalg.norm(np.array([df['geometry'][i].x, df['geometry'][i].y]) - np.array([df_localidade['geometry'][j].x, farmacia_filtro['geometry'][j].y]))
+    dist = np.linalg.norm(np.array([df_relogio['geometry'][i].x, df_relogio['geometry'][i].y]) - np.array([df_localidade['geometry'][j].x, df_localidade['geometry'][j].y]))
     #dist = distance.euclidean([df['geometry'][0].x, df['geometry'][0].y] , [farmacia_filtro['geometry'][i].x, farmacia_filtro['geometry'][i].y])
     dist_list.append(dist)
   dist_dict.update({v['ownerScreenId']: np.median(dist_list)})
