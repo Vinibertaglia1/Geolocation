@@ -16,8 +16,6 @@ warnings.filterwarnings("ignore")
 
 st.title('MVP - Interactive GeoLocation')
 
-#arquivo_input = st.file_uploader('Dado de relogios em csv')
-
 osmnx = osmnx()
 
 local = st.text_input('Local')
@@ -35,8 +33,9 @@ lista_opcoes_selecionadas = st.multiselect('Selecione seu filtro', lista_opcoes)
 
 df_localidade = dataframe[dataframe[tipo].isin(lista_opcoes_selecionadas)]
 
-
-df_relogio = pd.read_csv('dooh_planner_rio.csv')
+arquivo_input = st.file_uploader('Dado de relogios em csv')
+if arquivo_input:
+  df_relogio = pd.read_csv(arquivo_input)
 st.write(df_relogio)
 df_relogio['geometry'] = [Point(xy) for xy in zip(df_relogio['lng'], df_relogio['lat'])]
 df_relogio = geopandas.GeoDataFrame(df_relogio)
