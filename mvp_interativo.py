@@ -5,6 +5,8 @@ import folium
 import pandas as pd
 import geopandas
 from shapely.geometry import Point
+import numpy as np
+
 
 #get_gdf, opcoes_unicas, interactive_map_by_amenity, interactive_map_by_name
 
