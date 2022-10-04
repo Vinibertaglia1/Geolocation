@@ -52,6 +52,7 @@ for i, v in df_relogio.iterrows():
 
 dado_distancia = pd.DataFrame(dist_dict, index=['distancia_media']).T
 
+relogio_plot = df_relogio.merge(dado_distancia.reset_index(), left_on=['ownerScreenId'], right_on='index').drop(columns='index')
 
 if len(lista_opcoes_selecionadas) <= 3:
     gdf = dataframe
@@ -69,7 +70,7 @@ if len(lista_opcoes_selecionadas) <= 3:
             name="cities" # name of the layer in the map
         )
 
-    df_relogio.merge(dado_distancia.reset_index(), left_on=['ownerScreenId'], right_on='index').drop(columns='index').explore(
+    relogio_plot.explore(
          m=m, # pass the map object
          color="blue", # use red color on all points
          marker_kwds=dict(radius=5, fill=True), # make marker radius 10px with fill
@@ -78,7 +79,7 @@ if len(lista_opcoes_selecionadas) <= 3:
          name="cities" # name of the layer in the map
      )
 
-    df_relogio.merge(dado_distancia.reset_index(), left_on=['ownerScreenId'], right_on='index').drop(columns='index').sort_values('distancia_media', ascending=True)[:10].explore(
+    relogio_plot.sort_values('distancia_media', ascending=True)[:10].explore(
          m=m, # pass the map object
          color="green", # use red color on all points
          marker_kwds=dict(radius=5, fill=True), # make marker radius 10px with fill
