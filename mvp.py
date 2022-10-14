@@ -535,7 +535,7 @@ if botao_tendencia:
     plt.ylim(0,100)
     #plt.xticks(fontsize=8, rotation=45)
     plt.title(f'Proporção mensal ({retorno_df["geoName"][0]}, {data_inicial.split("-")[2]})', fontsize=15)
-    plt.ylabel('Google Trends Index')
+    plt.ylabel('Intensidade das buscas')
     plt.box(False)
     st.pyplot(fig)
     
