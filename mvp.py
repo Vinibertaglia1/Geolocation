@@ -548,7 +548,7 @@ if botao_tendencia:
     plt.title(f'Evolução semanal no Brasil, {data_inicial.split("-")[2]}', fontsize=15)
     plt.box(False)
     plt.xlabel('data')
-    plt.ylabel('Google Trends Index')
+    plt.ylabel('Intensidade das buscas')
     plt.ylim(0,100)
     st.pyplot(fig2)
 
