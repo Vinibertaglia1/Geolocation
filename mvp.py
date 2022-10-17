@@ -75,6 +75,8 @@ class GeoEstimation():
         column=self.app,
         cmap=cor,
         legend=True,
+        vmin=0,
+        vmax=100,
         edgecolor='black',
         linewidth=0.3,
         legend_kwds={
