@@ -161,6 +161,10 @@ def plot_lisa(tabela, coluna, weights, k_opt, estado):
         )"""
     # Tight layout to minimise in-betwee white space
     f.tight_layout()
+    if estado == 'ES':
+       plt.xlim(-42, -39.5)
+    else:
+       pass
     #f.savefig('LISA maps.png')
     return f    
 
