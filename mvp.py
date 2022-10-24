@@ -155,6 +155,10 @@ class GeoEstimation():
             },
             ax=ax,
         )
+        if self.estado == 'ES':
+          plt.xlim(-42, -39.5)
+        else:
+          pass
         plt.title(f"Pesquisas por {self.app}\n{estado}, {self.start_date} ~ {self.final_date}", fontsize=15)
         #plt.title(f'{estado}, {self.start_date} ~ {self.final_date}', fontsize=8)
         ax.axis("off")
