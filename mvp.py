@@ -410,15 +410,34 @@ app = apps.split(',')
 pais = 'BR'
 state = st.text_input('Estado (sigla)')
 
-state_sigla = {'SP':'State of São Paulo',
-'RJ':'State of Rio de Janeiro',
-'MG':'State of Minas Gerais',
-'ES':'State of Espírito Santo',
-'AC':'State of Acre',
-'AL':'State of Alagoas',
-'AP':'State of Amapá',
-'AM':'State of Amazonas',
-'PR':'State of Paraná'
+state_sigla = state_sigla = {'SP':'State of São Paulo',
+'RJ': 'State of Rio de Janeiro',
+'MG': 'State of Minas Gerais',
+'ES': 'State of Espírito Santo',
+'AC': 'State of Acre',
+'AL': 'State of Alagoas',
+'AP': 'State of Amapá',
+'AM': 'State of Amazonas',
+'PR': 'State of Paraná',
+'BA': 'State of Bahia',
+'CE': 'State of Ceará',
+'DF': 'State of Distrito Federal',
+'ES': 'State of Espírito Santo',
+'GO': 'State of Goiás',
+'MA': 'State of Maranhão',
+'MT': 'State of Mato Grosso',
+'MS': 'State of Mato Grosso do Sul',
+'PA': 'State of Pará',
+'PB': 'State of Paraíba',
+'SE': 'State of Sergipe',
+'TO': 'State of Tocantins',
+'RN': 'State of Rio Grande do Norte',
+'RS': 'State of Rio Grande do Sul',
+'RO': 'State of Rondônia',
+'RR': 'State of Roraima',
+'SC': 'State of Santa Catarina',
+'PE': 'State of Pernambuco',
+'PI': 'State of Piauí',
 }
 
 with urlopen('https://raw.githubusercontent.com/tbrugz/geodata-br/master/geojson/geojs-35-mun.json') as response:
