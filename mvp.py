@@ -384,15 +384,7 @@ def get_municip_real(app, estado, start_date, final_date, dicionario):
         dado = df_muni
         #df_estado = df_brasil[df_brasil['abbrev_state'] == self.estado].reset_index()
         #print(df_brasil[df_brasil['abbrev_state'] == self.estado]['geo_rating_estimation'].values[0])
-        '''
-        df_final = pd.DataFrame()
-        df_final['name_muni'] = df_muni['geoName'].str.title()
-        df_final[self.app] = df_muni[self.app]
-        dado_estado = geobr.read_municipality(code_muni='all', year=2020).query(f'abbrev_state == "{self.estado}"')
-        #dado_estado = dado_estado[dado_estado['abbrev_state'] == self.estado]
-        print(dado_estado)
-        dado = dado_estado.merge(df_final, how='left', on='name_muni').fillna(0)
-        '''
+     
         return dado
 #############################################################################
 
