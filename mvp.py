@@ -491,6 +491,7 @@ if st.button('Exibir mapa (Estado)'):
     for row, value in app_color_dict.iterrows():
         st.text(value['app'])
         st.pyplot(GeoEstimation(value['app'], 'BR', start_date=data_inicial, final_date=data_final).municip_map(state, cor = value['cor'], dicionario=dicionario_arquivos, geojson=geojson_sp))
+"""
 if st.button('Estimativa socioeconômica'):
     df = state_df
     lista_app = app
@@ -523,7 +524,7 @@ if st.button('Estimativa socioeconômica'):
       df_potencial['idh_medio'].append(df_pib_pot[f'taxa_idh_{i}'].mean())
       df_potencial['gini_medio'].append(df_pib_pot[f'taxa_gini_{i}'].mean())'''
     st.dataframe(df_pib_pot)
-
+"""
 #input_estados_tendencia = st.text_input('Estados para comparar a tendência mensal')
 sigla_estado = state_sigla[state]
 select_estado = [sigla_estado]
