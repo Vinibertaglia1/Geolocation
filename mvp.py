@@ -30,7 +30,41 @@ from urllib.request import urlopen
 
 warnings.filterwarnings("ignore")
 
+# Analise socioeconomica
+"""
+if st.button('Estimativa socioeconômica'):
+    df = state_df
+    lista_app = app
+    df_pib_pot = df[app]
+    #[app+['pib','pib_per_capita', 'populacao','IDH','gini']]
+    '''
+    #for i in app:
+     # st.text(i)
+      #st.text(df[df[i] > 0].sort_values(by=i,ascending=False)['name_muni'])
+    for i in lista_app:
+      df_pib_pot[f'taxa_{i}'] = (df_pib_pot[i] / df_pib_pot[lista_app].sum(axis=1)) * (df_pib_pot[i] /100)
+    df_pib_pot = df_pib_pot.dropna(0)
+    for i in lista_app:
+      print(df_pib_pot.columns)
+      df_pib_pot[f'taxa_pib_{i}'] = df_pib_pot['pib'] * df_pib_pot[f'taxa_{i}']
+      df_pib_pot = df_pib_pot.iloc[:,~df_pib_pot.columns.duplicated()]
+      df_pib_pot[f'pib_per_capita_medio_{i}'] = df_pib_pot[df_pib_pot[i] > 0]['pib_per_capita']
+      df_pib_pot[f'taxa_demanda_{i}'] = round(df_pib_pot['populacao'] * df_pib_pot[f'taxa_{i}'], 0)
+      df_pib_pot[f'taxa_idh_{i}'] = df_pib_pot[df_pib_pot[i] > 0]['IDH']
+      df_pib_pot[f'taxa_gini_{i}'] = df_pib_pot[df_pib_pot[i] > 0]['gini']
+      
 
+    for i in lista_app:
+      df_potencial['app'].append(i)
+      df_potencial['n_cidades'].append(len(df_pib_pot[df_pib_pot[i] > 0]))
+      df_potencial['PIB_potencial'].append(round(df_pib_pot[f'taxa_pib_{i}'].sum(),2))
+      df_potencial['demanda_potencial'].append(round(df_pib_pot[f'taxa_demanda_{i}'].sum(),0))
+      df_potencial['|'].append('|')
+      df_potencial['PIB_per_capita_medio'].append(round(df_pib_pot[f'pib_per_capita_medio_{i}'].mean(),2))
+      df_potencial['idh_medio'].append(df_pib_pot[f'taxa_idh_{i}'].mean())
+      df_potencial['gini_medio'].append(df_pib_pot[f'taxa_gini_{i}'].mean())'''
+    st.dataframe(df_pib_pot)
+"""
 
 
 
@@ -491,40 +525,6 @@ if st.button('Exibir mapa (Estado)'):
     for row, value in app_color_dict.iterrows():
         st.text(value['app'])
         st.pyplot(GeoEstimation(value['app'], 'BR', start_date=data_inicial, final_date=data_final).municip_map(state, cor = value['cor'], dicionario=dicionario_arquivos, geojson=geojson_sp))
-"""
-if st.button('Estimativa socioeconômica'):
-    df = state_df
-    lista_app = app
-    df_pib_pot = df[app]
-    #[app+['pib','pib_per_capita', 'populacao','IDH','gini']]
-    '''
-    #for i in app:
-     # st.text(i)
-      #st.text(df[df[i] > 0].sort_values(by=i,ascending=False)['name_muni'])
-    for i in lista_app:
-      df_pib_pot[f'taxa_{i}'] = (df_pib_pot[i] / df_pib_pot[lista_app].sum(axis=1)) * (df_pib_pot[i] /100)
-    df_pib_pot = df_pib_pot.dropna(0)
-    for i in lista_app:
-      print(df_pib_pot.columns)
-      df_pib_pot[f'taxa_pib_{i}'] = df_pib_pot['pib'] * df_pib_pot[f'taxa_{i}']
-      df_pib_pot = df_pib_pot.iloc[:,~df_pib_pot.columns.duplicated()]
-      df_pib_pot[f'pib_per_capita_medio_{i}'] = df_pib_pot[df_pib_pot[i] > 0]['pib_per_capita']
-      df_pib_pot[f'taxa_demanda_{i}'] = round(df_pib_pot['populacao'] * df_pib_pot[f'taxa_{i}'], 0)
-      df_pib_pot[f'taxa_idh_{i}'] = df_pib_pot[df_pib_pot[i] > 0]['IDH']
-      df_pib_pot[f'taxa_gini_{i}'] = df_pib_pot[df_pib_pot[i] > 0]['gini']
-      
-
-    for i in lista_app:
-      df_potencial['app'].append(i)
-      df_potencial['n_cidades'].append(len(df_pib_pot[df_pib_pot[i] > 0]))
-      df_potencial['PIB_potencial'].append(round(df_pib_pot[f'taxa_pib_{i}'].sum(),2))
-      df_potencial['demanda_potencial'].append(round(df_pib_pot[f'taxa_demanda_{i}'].sum(),0))
-      df_potencial['|'].append('|')
-      df_potencial['PIB_per_capita_medio'].append(round(df_pib_pot[f'pib_per_capita_medio_{i}'].mean(),2))
-      df_potencial['idh_medio'].append(df_pib_pot[f'taxa_idh_{i}'].mean())
-      df_potencial['gini_medio'].append(df_pib_pot[f'taxa_gini_{i}'].mean())'''
-    st.dataframe(df_pib_pot)
-"""
 #input_estados_tendencia = st.text_input('Estados para comparar a tendência mensal')
 sigla_estado = state_sigla[state]
 select_estado = [sigla_estado]
