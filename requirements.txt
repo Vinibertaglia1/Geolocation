@@ -13,7 +13,7 @@ seaborn
 pysal
 contextily
 openpyxl
-sklearn
+scikit-learn
 splot
 plotly
 mapclassify
